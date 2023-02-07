@@ -14,5 +14,5 @@ logs
 .nyc_output
 coverage
 dist
-
+.env
 .DS_Store
