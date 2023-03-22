@@ -1,4 +1,3 @@
-// import Binance, { BinanceApiClient } from 'binance-api-node';
 import { BinanceExchangeInfo } from "../interface";
 import Binance, { Binance as BinanceClient, CandleChartInterval_LT, CandleChartResult } from 'binance-api-node';
 

@@ -1,5 +1,5 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { BinanceLogic } from './binanceLogic';
+import { BinanceLogic } from './BinanceLogic';
 
 export class Bot {
     private bot: TelegramBot;

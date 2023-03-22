@@ -1,4 +1,4 @@
-import { BinanceApi } from "./binanceApi";
+import { BinanceApi } from "./BinanceApi";
 
 
 export class BinanceLogic {
