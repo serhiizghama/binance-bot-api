@@ -8,9 +8,10 @@
     "removeComments": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "strict": false,
-    "strictNullChecks": false,
-    "useUnknownInCatchVariables": false,
+    "strict": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "useUnknownInCatchVariables": true,
     "types": [
       "node",
     ]
@@ -20,8 +21,5 @@
   ],
   "exclude": [
     "dist",
-    "node_modules",
-    "fixtures",
-    "tmp"
-  ]
+  ],
 }
