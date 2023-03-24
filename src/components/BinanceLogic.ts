@@ -27,7 +27,7 @@ export class BinanceLogic {
         console.log("inside calculator");
         const result: any[] = [];
         const listOfPairs = await this.getSymbolCurrency();
-        // const firstTenElements = listOfPairs.slice(0, 5);
+        // const firstTenElements = listOfPairs.slice(0, 50);
         const firstTenElements = listOfPairs;
         const listOfPairsVolume = await this.addVolumeToPairs(firstTenElements);
 

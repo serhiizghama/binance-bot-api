@@ -61,7 +61,6 @@ export class Bot {
     private async handleVolatility(chatId: number) {
         try {
             console.log("volatility...");
-            await this.bot.sendMessage(chatId, 'Calculator...');
 
             const result = await this.getBinance().getVolatility();
 
@@ -69,14 +68,27 @@ export class Bot {
 
             const firstTenElements = sort.slice(0, 50);
 
-            const message = firstTenElements.map((c: any) => `*${c.pair}* - ${c.averagePercent.toFixed(2)}% - ${(+c.volume).toFixed(2)}\n`).join("");
+            // const message = firstTenElements.map((c: any) => `*${c.pair}* - ${c.averagePercent.toFixed(2)}% - ${(+c.volume).toFixed(2)}\n`).join("");
+            const inline_keyboard = firstTenElements.map((c: any) =>
+                [{ text: c.pair, callback_data: '/1' }, { text: `${c.averagePercent.toFixed(2)}%`, callback_data: '/1' }, { text: `${(+c.volume).toFixed(2)}`, callback_data: '/1' }]);
+
+
+            // `*${c.pair}* - ${c.averagePercent.toFixed(2)}% - ${(+c.volume).toFixed(2)}\n`).join("");
 
             const updateDate = this.getBinance().getUpdateDate();
             const now = new Date();
             const diffInMs = Math.abs(now.getTime() - updateDate.getTime()); // вычисляем разницу в миллисекундах
             const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); // переводим миллисекунды в минуты
 
-            await this.bot.sendMessage(chatId, `${message}\nThe data was updated ${diffInMinutes} minutes ago.`, { parse_mode: "Markdown" });
+            const friendlyOptions = {
+                reply_markup: {
+                    inline_keyboard: [
+                        ...inline_keyboard
+                    ]
+                }
+            };
+
+            await this.bot.sendMessage(chatId, `The data was updated ${diffInMinutes} minutes ago.`, friendlyOptions);
         } catch (e: any) {
             console.error(e.message);
         }
